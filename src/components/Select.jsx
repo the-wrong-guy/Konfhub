@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Select({ options, onChange, value }) {
    return (
-      <div className="grid gap-2 w-40">
+      <div className="grid gap-2 sm:w-40 xs:w-full">
          <label className="font-semibold">Past Events</label>
          <select
             onChange={onChange}
@@ -10,11 +10,13 @@ export default function Select({ options, onChange, value }) {
             placeholder="Select Type"
             value={value}
          >
-            <option value="" disabled selected>
+            {/* <option value="" disabled selected>
                Select Type
-            </option>
+            </option> */}
             {options.map((option) => (
-               <option value={option.value}>{option.label}</option>
+               <option key={option.value} value={option.value}>
+                  {option.label}
+               </option>
             ))}
          </select>
       </div>
