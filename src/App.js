@@ -23,10 +23,16 @@ function App() {
       const { data } = await axios.get(apiUrl);
       setData(data);
    }
+
+   useEffect(() => {
+      setLimit(12, () => fetchData());
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [selectedOption]);
+
    useEffect(() => {
       fetchData();
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [selectedOption, limit]);
+   }, [limit]);
 
    return (
       <div className="py-8 sm:px-[77px] xs:px-[20px]">
@@ -79,16 +85,18 @@ function App() {
                   ))}
             </div>
          </section>
-         <div className="flex items-center sm:gap-x-[40px] xs:gap-x-[15px]">
-            <div className="flex flex-1 h-[2px] rounded-sm w-full bg-[#CCCCCC]" />
-            <button
-               className="border-[#CCCCCC] border-[1px] w-[143px] h-[48px] rounded-full text-lg"
-               onClick={() => setLimit((prev) => prev + 12)}
-            >
-               Load More
-            </button>
-            <div className="flex flex-1 h-[2px] rounded-sm w-full bg-[#CCCCCC]" />
-         </div>
+         {data && data.count > 12 && (
+            <div className="flex items-center sm:gap-x-[40px] xs:gap-x-[15px]">
+               <div className="flex flex-1 h-[2px] rounded-sm w-full bg-[#CCCCCC]" />
+               <button
+                  className="border-[#CCCCCC] border-[1px] w-[143px] h-[48px] rounded-full text-lg"
+                  onClick={() => setLimit((prev) => prev + 12)}
+               >
+                  Load More
+               </button>
+               <div className="flex flex-1 h-[2px] rounded-sm w-full bg-[#CCCCCC]" />
+            </div>
+         )}
       </div>
    );
 }
