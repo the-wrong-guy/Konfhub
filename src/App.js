@@ -51,7 +51,7 @@ function App() {
                   <Octo />
                </div>
             </div>
-            <div className="flex justify-center">
+            <div className="md:flex justify-center xs:block">
                <div
                   className="bg-white rounded-[15px] px-5 py-4 translate-y-[45%] flex items-center md:gap-8 xs:gap-3 xs:flex-col sm:flex-row"
                   style={{ boxShadow: '0px 4px 15px 0px #00000026' }}
